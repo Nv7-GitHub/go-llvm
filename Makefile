@@ -5,7 +5,7 @@ all: help
 
 COMPONENTS = all-targets analysis asmparser asmprinter bitreader bitwriter codegen core coroutines debuginfodwarf executionengine instrumentation interpreter ipo irreader linker mc mcjit objcarcopts option profiledata scalaropts support target
 
-VERSION=9.0.0
+VERSION=9.0.1_2
 VERSION_MAJOR=$(firstword $(subst ., ,$(VERSION)))
 
 SRCDIR=llvm-$(VERSION)
@@ -16,7 +16,7 @@ GOOS := $(shell go env GOOS)
 LDFLAGS = $(shell $(CONFIG) --ldflags --libs --system-libs $(COMPONENTS))
 ifeq ($(BUILDDIR),)
 	ifeq ($(UNAME_S),Darwin)
-	CONFIG = /usr/local/Cellar/llvm/$(VERSION)/bin/llvm-config
+	CONFIG = /usr/local/Cellar/llvm@9/$(VERSION)/bin/llvm-config
 	LDFLAGS += -L/usr/local/opt/libffi/lib -lffi
 	else
 	CONFIG = llvm-config-$(VERSION_MAJOR)
